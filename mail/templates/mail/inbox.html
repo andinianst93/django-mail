@@ -1,0 +1,51 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 border-b-2">
+        <div class="flex lg:flex-1">
+            <h2 class="mt-3 font-semibold">{{ request.user.email }}</h2>
+        </div>
+
+        <div class="flex space-x-6 mr-8 text-sm">
+            <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+            <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+            <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+            <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+        </div>
+
+        <div class="flex gap-x-12">
+            <a class="bg-gray-300 text-gray-900 px-2 py-1 text-sm rounded font-bold" href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </div>
+
+    <div id="emails-view" class="mx-auto max-w-7xl p-6 lg:px-8">
+    </div>
+
+    <div id="compose-view" class="mx-auto max-w-7xl p-6 lg:px-8">
+        <h3 class="my-3 font-semibold text-2xl text-center">New Email</h3>
+        <form id="compose-form" class="mx-auto mt-16 max-w-xl sm:mt-20 text-sm">
+            <div class="mt-2.5">
+                From: <input disabled class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="{{ request.user.email }}">
+            </div>
+            <div class="mt-2.5">
+                To: <input id="compose-recipients" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <div class="my-2.5">
+                <input class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="compose-subject" placeholder="Subject">
+            </div>
+            <div class="my-4">
+                <textarea rows="6" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="compose-body" placeholder="Body"></textarea>
+            </div>
+
+            <div>
+                <input type="submit" class="bg-blue-700 text-white px-2 py-1 rounded"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

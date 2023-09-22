@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn-reply {
+    @apply bg-gray-200 text-gray-900 px-2 py-1 rounded text-sm;
+}
+
+.btn-arch {
+    @apply bg-blue-200 text-blue-900 px-2 py-1 rounded text-sm;
+}
+
+.email-container {
+    @apply flex items-center
+}
+
+.reply-container {
+    @apply my-8
+}
